@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>User Form</title>
+</head>
+<body>
+<hr>
+<div>
+    <h1>User Form</h1>
+    <form th:action="@{/create}" th:method="POST" th:object="${user}">
+        <label for="name">Enter name</label>
+        <input id="name" th:field="*{name}" type="text">
+        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+
+        <label for="surname">Enter surname</label>
+        <input id="surname" th:field="*{surname}" type="text">
+        <span th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"></span>
+
+        <label for="email">Enter email</label>
+        <input id="email" th:field="*{email}" type="text">
+        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+        <br><br>
+        <input type="submit" th:value="${user.id != null ? 'Update user' : 'Create user'}" />
+    </form>
+</div>
+
+<div>
+    <h2>Delete user</h2>
+    <form th:action="@{/delete}" th:method="POST">
+        <label for="userId">Enter User ID</label>
+        <input id="userId" name="id" type="number">
+        <br><br>
+        <input type="submit" value="Delete user">
+    </form>
+</div>
+
+</body>
+</html>
